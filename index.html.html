@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福之缘 - 缘分在这里，幸福从这里开始</title>
+    <style>
+        /* CSS 样式部分 */
+        :root {
+            --primary-color: #ff7e5f; /* 喜庆红 */
+            --secondary-color: #feb47b; /* 温柔橙 */
+            --bg-color: #fff0f5;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* 导航栏 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            color: white;
+            font-size: 2.5em;
+            letter-spacing: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* 搜索框 */
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .input-group {
+            flex: 1;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e05a36;
+        }
+
+        /* 匹配结果展示区 */
+        .match-result {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 5px solid var(--primary-color);
+            background-color: #faf9f7;
+            border-radius: 5px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            background-color: #ddd; /* 占位颜色 */
+        }
+
+        .match-info h3 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+
+        .tag {
+            background: #e6f4ea;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #2e7d32;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 简单的动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .match-result { animation: fadeIn 0.5s ease-out; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>福之缘 · FuZhiYuan</h1>
+    <nav>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">单身档案</a></li>
+            <li><a href="#">缘分匹配</a></li>
+            <li><a href="#">会员中心</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <!-- 功能一：寻找缘分 -->
+    <div class="search-box" id="searchSection">
+        <h2>🔍 开启您的幸福旅程</h2>
+        <input type="hidden" id="userId" value="0">
+        <div class="input-group">
+            <select id="gender">
+                <option value="">选择性别：-</option>
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select>
+            <input type="text" placeholder="年龄范围 (如 28-35)" id="ageRange">
+        </div>
+        <button onclick="findMatch()">寻找缘分</button>
+    </div>
+
+    <!-- 功能二：匹配结果展示 -->
+    <div id="resultArea">
+        <!-- JS 将在这里动态生成内容 -->
+    </div>
+
+    <div class="search-box" style="background-color: #f8f9fa;">
+        <h2>💌 推荐缘分对象</h2>
+        <!-- 模拟数据展示 -->
+        <div class="match-result">
+            <img src="https://via.placeholder.com/150/ff7e5f/ffffff?text=Photo" class="avatar" alt="头像">
+            <div class="match-info">
+                <h3>李小姐，28 岁，设计师</h3>
+                <p>✨ 身高 165cm | 💼 自由职业 | 📍 上海</p>
+                <span class="tag">真诚 ❤️</span>
+                <button style="padding: 5px 15px; font-size: 14px;" onclick="contactUser()">联系她</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2023 福之缘婚介有限公司 | 保护隐私 · 诚信交友 · 安全第一</p>
+    <p>联系我们：support@fuzhiyuan.com</p>
+</footer>
+
+<script>
+    // JavaScript 逻辑部分 (模拟后端交互)
+
+    // 1. 模拟查找匹配算法
+    function findMatch() {
+        const gender = document.getElementById('gender').value;
+        const ageRange = document.getElementById('ageRange').value;
+        const resultArea = document.getElementById('resultArea');
+
+        if (gender === "" || !ageRange) {
+            alert("请先选择性别并输入年龄范围哦～");
+            return;
+        }
+
+        // 模拟生成结果
+        let message = `<div class="match-result">`;
+        let avatarName = "未知照片";
+
+        if (gender === 'male') {
+             message += `
+                <img src="https://via.placeholder.com/150/feb47b/ffffff?text=Girl" class="avatar" alt="推荐对象">
+                <div class="match-info">
+                    <h3>${getRandomName('女')}</h3>
+                    <p>✨ 身高 162cm | 💼 教师 | 📍 北京</p>
+                    <span class="tag">缘分匹配度：98%</span>
+                </div>`;
+        } else {
+            message += `
+                <img src="https://via.placeholder.com/150/e6d7a2/ffffff?text=Boy" class="avatar" alt="推荐对象">
+                <div class="match-info">
+                    <h3>${getRandomName('男')}</h3>
+                    <p>✨ 身高 178cm | 💼 工程师 | 📍 广州</p>
+                    <span class="tag">缘分匹配度：95%</span>
+                </div>`;
+        }
+
+        resultArea.innerHTML = message + `<button onclick="contactUser()" style="margin-top:10px;">发送消息</button></div>`;
+    }
+
+    // 随机生成名字函数
+    function getRandomName(gender) {
+        const names = ["小雨", "晓风", "浩然", "诗涵", "晨曦", "子轩"];
+        return names[Math.floor(Math.random() * names.length)];
+    }
+
+    // 2. 模拟联系功能
+    function contactUser() {
+        alert("🔔 消息已发送！正在等待对方回复...\n(在实际项目中，这里会调用后端 API)");
+    }
+
+    // 初始化默认欢迎信息
+    window.onload = function() {
+        document.getElementById('resultArea').innerHTML = `
+            <div class="match-result">
+                <h3>恭喜您进入福之缘会员！</h3>
+                <p>您的缘分档案已更新。点击下方按钮开始匹配。</p>
+                <button onclick="document.getElementById('searchSection').scrollIntoView()">去匹配</button>
+            </div>`;
+    }
+</script>
+
+</body>
+</html>
