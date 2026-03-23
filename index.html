@@ -3,265 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>福之缘 - 缘分在这里，幸福从这里开始</title>
-    <style>
-        /* CSS 样式部分 */
-        :root {
-            --primary-color: #ff7e5f; /* 喜庆红 */
-            --secondary-color: #feb47b; /* 温柔橙 */
-            --bg-color: #fff0f5;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        /* 导航栏 */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            margin: 0;
-            color: white;
-            font-size: 2.5em;
-            letter-spacing: 5px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 15px;
-        }
-        nav ul li {
-            display: inline-block;
-            margin: 0 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* 主体内容 */
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
-
-        /* 搜索框 */
-        .search-box {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .input-group {
-            flex: 1;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #e05a36;
-        }
-
-        /* 匹配结果展示区 */
-        .match-result {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-left: 5px solid var(--primary-color);
-            background-color: #faf9f7;
-            border-radius: 5px;
-        }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            background-color: #ddd; /* 占位颜色 */
-        }
-
-        .match-info h3 {
-            margin: 0 0 5px 0;
-            color: var(--primary-color);
-        }
-
-        .tag {
-            background: #e6f4ea;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #2e7d32;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* 简单的动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .match-result { animation: fadeIn 0.5s ease-out; }
-    </style>
+    <title>福之缘婚恋 - 遇见一生所爱</title>
+    <!-- 引入Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<header>
-    <h1>福之缘 · FuZhiYuan</h1>
-    <nav>
-        <ul>
-            <li><a href="#">首页</a></li>
-            <li><a href="#">单身档案</a></li>
-            <li><a href="#">缘分匹配</a></li>
-            <li><a href="#">会员中心</a></li>
-        </ul>
-    </nav>
-</header>
-
-<div class="container">
-    <!-- 功能一：寻找缘分 -->
-    <div class="search-box" id="searchSection">
-        <h2>🔍 开启您的幸福旅程</h2>
-        <input type="hidden" id="userId" value="0">
-        <div class="input-group">
-            <select id="gender">
-                <option value="">选择性别：-</option>
-                <option value="male">男</option>
-                <option value="female">女</option>
-            </select>
-            <input type="text" placeholder="年龄范围 (如 28-35)" id="ageRange">
-        </div>
-        <button onclick="findMatch()">寻找缘分</button>
-    </div>
-
-    <!-- 功能二：匹配结果展示 -->
-    <div id="resultArea">
-        <!-- JS 将在这里动态生成内容 -->
-    </div>
-
-    <div class="search-box" style="background-color: #f8f9fa;">
-        <h2>💌 推荐缘分对象</h2>
-        <!-- 模拟数据展示 -->
-        <div class="match-result">
-            <img src="https://via.placeholder.com/150/ff7e5f/ffffff?text=Photo" class="avatar" alt="头像">
-            <div class="match-info">
-                <h3>李小姐，28 岁，设计师</h3>
-                <p>✨ 身高 165cm | 💼 自由职业 | 📍 上海</p>
-                <span class="tag">真诚 ❤️</span>
-                <button style="padding: 5px 15px; font-size: 14px;" onclick="contactUser()">联系她</button>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <h3>福之缘婚恋</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="match.html">智能匹配</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html">个人中心</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">联系我们</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-light text-danger ms-2" href="login.html">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-light text-danger" href="register.html">注册</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
+
+    <!-- 轮播图 -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://picsum.photos/1920/600?random=1" class="d-block w-100" alt="福之缘婚恋-遇见缘分">
+                <div class="carousel-caption d-none d-md-block text-dark">
+                    <h2>以爱为名，结缘一生</h2>
+                    <p>福之缘，为你寻找命中注定的TA</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/600?random=2" class="d-block w-100" alt="福之缘婚恋-精准匹配">
+                <div class="carousel-caption d-none d-md-block text-dark">
+                    <h2>智能匹配，精准相遇</h2>
+                    <p>基于性格、爱好、价值观的深度匹配</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/600?random=3" class="d-block w-100" alt="福之缘婚恋-安全靠谱">
+                <div class="carousel-caption d-none d-md-block text-dark">
+                    <h2>实名认证，安全靠谱</h2>
+                    <p>严格审核，守护你的婚恋安全</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-</div>
 
-<footer>
-    <p>&copy; 2023 福之缘婚介有限公司 | 保护隐私 · 诚信交友 · 安全第一</p>
-    <p>联系我们：support@fuzhiyuan.com</p>
-</footer>
+    <!-- 核心优势 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-danger">福之缘核心优势</h2>
+                <p class="text-muted">用心服务，成就美好姻缘</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <i class="bi bi-person-check fs-1 text-danger mb-3"></i>
+                        <h5 class="card-title">实名认证</h5>
+                        <p class="card-text text-muted">所有用户均通过身份证、人脸双重认证，杜绝虚假信息</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <i class="bi bi-robot fs-1 text-danger mb-3"></i>
+                        <h5 class="card-title">智能匹配</h5>
+                        <p class="card-text text-muted">AI算法分析婚恋需求，精准推荐契合度90%以上的对象</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <i class="bi bi-shield-lock fs-1 text-danger mb-3"></i>
+                        <h5 class="card-title">隐私保护</h5>
+                        <p class="card-text text-muted">严格的隐私政策，仅向匹配对象展示授权信息</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-    // JavaScript 逻辑部分 (模拟后端交互)
+    <!-- 成功案例 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-danger">成功案例</h2>
+                <p class="text-muted">已有10000+用户通过福之缘找到幸福</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=4" class="card-img-top" alt="成功案例1">
+                        <div class="card-body">
+                            <h6 class="card-title">张先生 & 李女士</h6>
+                            <p class="card-text text-sm text-muted">相识3个月，已订婚 | 匹配度95%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=5" class="card-img-top" alt="成功案例2">
+                        <div class="card-body">
+                            <h6 class="card-title">王女士 & 赵先生</h6>
+                            <p class="card-text text-sm text-muted">相识6个月，已结婚 | 匹配度92%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=6" class="card-img-top" alt="成功案例3">
+                        <div class="card-body">
+                            <h6 class="card-title">刘先生 & 陈女士</h6>
+                            <p class="card-text text-sm text-muted">相识1年，备孕中 | 匹配度98%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=7" class="card-img-top" alt="成功案例4">
+                        <div class="card-body">
+                            <h6 class="card-title">孙女士 & 周先生</h6>
+                            <p class="card-text text-sm text-muted">相识2个月，确定关系 | 匹配度91%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // 1. 模拟查找匹配算法
-    function findMatch() {
-        const gender = document.getElementById('gender').value;
-        const ageRange = document.getElementById('ageRange').value;
-        const resultArea = document.getElementById('resultArea');
+    <!-- 底部 -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>福之缘婚恋</h5>
+                    <p class="text-muted small">© 2025 福之缘婚恋 版权所有 | 婚恋服务许可证：XX123456</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-muted small">客服电话：400-888-9999</p>
+                    <p class="text-muted small">客服邮箱：service@fuzhiyuan.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        if (gender === "" || !ageRange) {
-            alert("请先选择性别并输入年龄范围哦～");
-            return;
-        }
-
-        // 模拟生成结果
-        let message = `<div class="match-result">`;
-        let avatarName = "未知照片";
-
-        if (gender === 'male') {
-             message += `
-                <img src="https://via.placeholder.com/150/feb47b/ffffff?text=Girl" class="avatar" alt="推荐对象">
-                <div class="match-info">
-                    <h3>${getRandomName('女')}</h3>
-                    <p>✨ 身高 162cm | 💼 教师 | 📍 北京</p>
-                    <span class="tag">缘分匹配度：98%</span>
-                </div>`;
-        } else {
-            message += `
-                <img src="https://via.placeholder.com/150/e6d7a2/ffffff?text=Boy" class="avatar" alt="推荐对象">
-                <div class="match-info">
-                    <h3>${getRandomName('男')}</h3>
-                    <p>✨ 身高 178cm | 💼 工程师 | 📍 广州</p>
-                    <span class="tag">缘分匹配度：95%</span>
-                </div>`;
-        }
-
-        resultArea.innerHTML = message + `<button onclick="contactUser()" style="margin-top:10px;">发送消息</button></div>`;
-    }
-
-    // 随机生成名字函数
-    function getRandomName(gender) {
-        const names = ["小雨", "晓风", "浩然", "诗涵", "晨曦", "子轩"];
-        return names[Math.floor(Math.random() * names.length)];
-    }
-
-    // 2. 模拟联系功能
-    function contactUser() {
-        alert("🔔 消息已发送！正在等待对方回复...\n(在实际项目中，这里会调用后端 API)");
-    }
-
-    // 初始化默认欢迎信息
-    window.onload = function() {
-        document.getElementById('resultArea').innerHTML = `
-            <div class="match-result">
-                <h3>恭喜您进入福之缘会员！</h3>
-                <p>您的缘分档案已更新。点击下方按钮开始匹配。</p>
-                <button onclick="document.getElementById('searchSection').scrollIntoView()">去匹配</button>
-            </div>`;
-    }
-</script>
-
+    <!-- 引入JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
